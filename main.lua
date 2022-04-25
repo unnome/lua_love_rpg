@@ -2,8 +2,10 @@ require "turn"
 require "player"
 require "block"
 require "grid"
+require "map_drawer"
 
 local movedToNextTurn = false
+currentMap = Map2
 
 function love.load()
   Grid:load()
@@ -17,12 +19,13 @@ function love.update(dt)
 end
 
 function love.draw()
-  Grid:draw()
+  --Grid:draw()
+  mapDrawer:drawMap(currentMap)
   Player:draw()
   Turn:draw()
 end
 
 function love.keyreleased(key)
-  Player:move(key)
+  Player:move(key, currentMap)
   --movePlayer(key, gameState.player_grid_position.x, gameState.player_grid_position.y, gameState.map_size_x, gameState.map_size_y)
 end

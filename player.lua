@@ -32,8 +32,8 @@ function Player:draw()
   love.graphics.circle( "line", player_x, player_y, 15)
 end
 
-function Player:move(key)
-  if moveIsWithinBoundaries(key) and moveIsValid(key)
+function Player:move(key, map)
+  if moveIsWithinBoundaries(key) and moveIsValid(key, map)
     then
     if key == 'd'
       then
@@ -74,29 +74,29 @@ function moveIsWithinBoundaries(key)
   end
 end
 
-function moveIsValid(key)
+function moveIsValid(key, map)
   if key == 'd'
-    and targetBlockIsWalkable(gameState.player_grid_position.x + 1, gameState.player_grid_position.y)
+    and targetBlockIsWalkable(map, gameState.player_grid_position.x + 1, gameState.player_grid_position.y)
     then
     return true
   elseif key == 'a'
-    and targetBlockIsWalkable(gameState.player_grid_position.x - 1, gameState.player_grid_position.y)
+    and targetBlockIsWalkable(map, gameState.player_grid_position.x - 1, gameState.player_grid_position.y)
   then
     return true
   elseif key == 'w'
-    and targetBlockIsWalkable(gameState.player_grid_position.x, gameState.player_grid_position.y - 1)
+    and targetBlockIsWalkable(map, gameState.player_grid_position.x, gameState.player_grid_position.y - 1)
   then
     return true
   elseif key == 's'
-    and targetBlockIsWalkable(gameState.player_grid_position.x, gameState.player_grid_position.y + 1)
+    and targetBlockIsWalkable(map, gameState.player_grid_position.x, gameState.player_grid_position.y + 1)
     then
     return true
   else return false
     end
 end
 
-function targetBlockIsWalkable(x, y)
-  if Grid.terrain[y][x] == 'water' then return false
+function targetBlockIsWalkable(map, x, y)
+  if map.terrain[y][x] == 'water' then return false
   else return true
   end
 end
