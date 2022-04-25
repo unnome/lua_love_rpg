@@ -5,7 +5,7 @@ require "grid"
 require "map_drawer"
 
 local movedToNextTurn = false
-currentMap = Map2
+currentMap = Map1
 
 function love.load()
   Grid:load()

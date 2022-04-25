@@ -1,6 +1,7 @@
 require "block"
 require "grid"
-require "map2"
+require "maps.map2"
+require "maps.map1"
 require "format_view"
 
 mapDrawer = {
