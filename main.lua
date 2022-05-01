@@ -1,7 +1,5 @@
 require "turn"
 require "player"
-require "block"
-require "grid"
 require "map_drawer"
 require "selected_map"
 
@@ -9,7 +7,6 @@ local movedToNextTurn = false
 currentMap = selectedMap.mapObject
 
 function love.load()
-  Grid:load()
   Turn:load()
   Player:load()
 end
